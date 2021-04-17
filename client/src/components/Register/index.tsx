@@ -1,0 +1,31 @@
+import { Button, TextField } from '@material-ui/core';
+import React, { useState }from 'react';
+import './style.css';
+
+export default function Register() {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    async function registerUser() {
+        fetch('http://localhost:1337/api/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                email, password
+            })
+        })
+
+    }
+
+
+    return(
+        <div className="form">
+        <h1>Register</h1>
+        <form className="register-fields">
+            <TextField fullWidth placeholder="you@example.com" label="Your Email" value={email} onChange={e => setEmail(e.target.value)} variant="outlined" />
+            <TextField fullWidth placeholder="p@$$w0rd" label="password" value={password} onChange={e => setPassword(e.target.value)} variant="outlined" />
+            <Button color="primary" variant="contained" onClick = {registerUser}>Register</Button>
+        </form>
+        </div>
+    )
+}
