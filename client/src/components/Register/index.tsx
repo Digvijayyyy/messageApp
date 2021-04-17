@@ -8,13 +8,14 @@ export default function Register() {
     const [password, setPassword] = useState('')
 
     async function registerUser() {
-        fetch('http://localhost:1337/api/register', {
+        const res = await fetch('http://localhost:1337/api/register', {
             method: 'POST',
             body: JSON.stringify({
                 email, password
             })
-        })
+        }).then((t) => t.json()) 
 
+        console.log(res);
     }
 
 
